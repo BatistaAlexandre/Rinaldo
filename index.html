@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Clientes</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Controle de Clientes</h1>
+
+    <h2>Adicionar Cliente</h2>
+    <form id="clienteForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone"><br><br>
+
+        <label for="categoria">Categoria:</label>
+        <select id="categoria" name="categoria">
+            <option value="normal">Normal</option>
+            <option value="premium">Premium</option>
+        </select><br><br>
+
+        <input type="submit" value="Adicionar Cliente">
+    </form>
+
+    <h2>Lista de Clientes</h2>
+    <table id="clientesTable" border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Categoria</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        document.getElementById("clienteForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita o envio do formulário padrão
+
+            // Captura os valores do formulário
+            var nome = document.getElementById("nome").value;
+            var email = document.getElementById("email").value;
+            var telefone = document.getElementById("telefone").value;
+            var categoria = document.getElementById("categoria").value;
+
+            // Adiciona os valores na tabela
+            var table = document.getElementById("clientesTable").getElementsByTagName("tbody")[0];
+            var newRow = table.insertRow(table.rows.length);
+            newRow.insertCell(0).innerHTML = nome;
+            newRow.insertCell(1).innerHTML = email;
+            newRow.insertCell(2).innerHTML = telefone;
+            newRow.insertCell(3).innerHTML = categoria;
+
+            // Limpa os campos do formulário
+            document.getElementById("nome").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("telefone").value = "";
+            document.getElementById("categoria").value = "normal";
+        });
+    </script>
+</body>
+</html>
